@@ -24,6 +24,9 @@ func (a *App) InitializeRoutes(db *gorm.DB, rt *mux.Router) {
 	a.Router.HandleFunc("/login", a.Login).Methods("POST")
 	a.Router.HandleFunc("/buku", a.Buku).Methods("POST")
 	a.Router.HandleFunc("/profile", a.Profile).Methods("POST")
+	a.Router.HandleFunc("/update-profile", a.UpdateProfile).Methods("POST")
+	a.Router.HandleFunc("/delete", a.Delete).Methods("GET")
+	a.Router.HandleFunc("/join", a.JoinTabel).Methods("GET")
 
 	// s := a.Router.PathPrefix("/api").Subrouter() // subrouter to add auth middleware
 	// s.Use(middlewares.SetContentTypeMiddleware)  // setting content-type to json
