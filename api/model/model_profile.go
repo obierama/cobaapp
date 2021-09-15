@@ -29,7 +29,7 @@ type StukturProfile struct {
 	Email string `json:"email"`
 }
 
-//untuk join tabel  31-43
+//untuk join tabel  32-44
 var (
 	seprofile = "profiles.*, users.name , users.email "
 	joinuser  = "JOIN users on profiles.userid = users.id"
@@ -37,7 +37,7 @@ var (
 
 func (u *Profile) FindInt(db *gorm.DB, param string) (*[]StukturProfile, error) {
 	data := []StukturProfile{}
-	if err := db.Debug().Table("profiles").Select(seprofile).Joins(joinuser).Where("users.name ILike ?", "%"+param+"%").Find(&data).Error; err != nil {
+	if err := db.Debug().Table("profiles").Select(seprofile).Joins(joinuser).Where("users.name ILike ?", "%"+param+"%").Find(&data).Error; err != nil { //tambah "%"+nama_param+"%" hanya untuk menambah fungsi searching
 		return &[]StukturProfile{}, err
 	}
 	return &data, nil
@@ -143,6 +143,7 @@ func (u *Profile) GetProfileInt(db *gorm.DB, parameter string, data int) (*Profi
 	return account, nil
 }
 
+//untuk fungsu delete/hapus
 func (u *Profile) Delete(db *gorm.DB, data string) (*Profile, error) {
 	account := &Profile{}
 	if err := db.Unscoped().Table("profiles").Where("id = ?", data).Delete(account).Error; err != nil {

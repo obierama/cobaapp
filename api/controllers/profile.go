@@ -74,6 +74,7 @@ func (a *App) UpdateProfile(w http.ResponseWriter, r *http.Request) {
 	return
 }
 
+//untuk fungsi delete/hapus
 func (a *App) Delete(w http.ResponseWriter, r *http.Request) {
 	profile := &model.Profile{}
 	userId := r.URL.Query().Get("id")
